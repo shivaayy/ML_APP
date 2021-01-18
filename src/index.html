@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Ml model</title>
+    
+    
+    <link href="index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <div class="image_container">
+    <img src="page_image.jpg" alt="theme" style="width:100%;">
+    
+    <div class="centered">Welcome To Smart Agriculture</div>
+  </div>
+  
+  
+    <div class="form_container" style="margin-left: auto;margin-right: auto;margin-top: 10px;">
+        <p style=" font-size: 150%;color:#00cc00;">Please upload crop Image on server</p>
+        <form class="form" id="myForm">
+          <input type="file" id="inpFile" style="width: auto;" /><br /><br />
+          <button class="bt" type="submit" style="width: 160px;">Upload Image</button>
+        </form>
+        <p id="upload_message" style="display: none;"></p>
+      </div>
+</body>
+<script>
+    const myForm = document.getElementById("myForm");
+const inpFile = document.getElementById("inpFile");
+myForm.addEventListener("submit", e => {
+  e.preventDefault();
+  
+  // console.log(inpFile.innerHTML);
+  // console.log(inpFile.innerText);
+  let endpoint = "http://127.0.0.1:5000/upload/";
+
+  const formData = new FormData();
+
+  formData.append("inpFile", inpFile.files[0]);
+  
+
+  fetch(endpoint, {
+    method: "POST",
+    mode: "cors",
+    body: formData
+  })
+    .then(res => res.json())
+    .then(json => {
+      
+      let message = document.getElementById("upload_message");
+      if (json["upload_status"] == "file uploaded") {
+        message.innerHTML = json["upload_status"];
+        message.style.display = "flex";
+        message.style.backgroundColor = "rgba(51, 255, 51, 0.5)";
+      } else {
+        message.innerHTML = json["upload_status"];
+        message.style.display = "flex";
+        message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+      }
+
+      
+
+    })
+    .catch(err => {
+      
+      let message = document.getElementById("upload_message");
+      message.innerHTML = "file upload unsuccessful !!server is not responding";
+      message.style.display = "flex";
+      message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+      message.style.paddingLeft = "20px";
+
+      console.error(err);
+    });
+});
+</script>
+</html>
