@@ -10,6 +10,8 @@ CORS(app)
 # route for uploading file on server
 api.add_resource(model_api.UploadImage, '/upload/')
 
+api.add_resource(model_api.RunModel, '/run/')
+
 
 
 if __name__ == "__main__":

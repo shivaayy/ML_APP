@@ -22,3 +22,174 @@
     padding: 50px;
 
   }
+
+
+/* loader */
+.loader {
+  flex-basis: 100%;
+  max-width: 100%;
+  min-height: 300px;
+  max-height: 300px;
+  height: 50vh;
+  margin: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+  position: relative;
+  overflow: hidden;
+  /* border: 2px solid #ffffff; */
+  z-index: 1;
+}
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ball {
+  position: absolute;
+}
+
+.loader ::before,
+.loader ::after {
+  position: absolute;
+  content: "";
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 700px) {
+  .loader {
+    flex-basis: 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+/* loader default-01 */
+/* .default .loader-container {
+  width: 80px;
+  height: 80px;
+}
+.default .ball {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 15%;
+  height: 50%;
+  background-color: transparent;
+  transform-origin: bottom center;
+  overflow: visible;
+}
+.default .ball:nth-of-type(2) {
+  transform: translate(-50%, 0) rotate(30deg);
+}
+.default .ball:nth-of-type(3) {
+  transform: translate(-50%, 0) rotate(60deg);
+}
+.default .ball:nth-of-type(4) {
+  transform: translate(-50%, 0) rotate(90deg);
+}
+.default .ball:nth-of-type(5) {
+  transform: translate(-50%, 0) rotate(120deg);
+}
+.default .ball:nth-of-type(6) {
+  transform: translate(-50%, 0) rotate(150deg);
+}
+.default .ball:nth-of-type(7) {
+  transform: translate(-50%, 0) rotate(180deg);
+}
+.default .ball:nth-of-type(8) {
+  transform: translate(-50%, 0) rotate(210deg);
+}
+.default .ball:nth-of-type(9) {
+  transform: translate(-50%, 0) rotate(240deg);
+}
+.default .ball:nth-of-type(10) {
+  transform: translate(-50%, 0) rotate(270deg);
+}
+.default .ball:nth-of-type(11) {
+  transform: translate(-50%, 0) rotate(300deg);
+}
+.default .ball:nth-of-type(12) {
+  transform: translate(-50%, 0) rotate(330deg);
+}
+.default-01 .ball::before {
+  top: 0;
+  left: 0;
+  width: 80%;
+  padding-bottom: 80%;
+  border-radius: 100%;
+  background-color: #fcddc0;
+  transform: translateZ(0);
+  animation: default1 1.2s infinite linear;
+}
+.default-01 .ball:nth-of-type(2)::before {
+  animation-delay: 0.1s;
+}
+.default-01 .ball:nth-of-type(3)::before {
+  animation-delay: 0.2s;
+}
+.default-01 .ball:nth-of-type(4)::before {
+  animation-delay: 0.3s;
+}
+.default-01 .ball:nth-of-type(5)::before {
+  animation-delay: 0.4s;
+}
+.default-01 .ball:nth-of-type(6)::before {
+  animation-delay: 0.5s;
+}
+.default-01 .ball:nth-of-type(7)::before {
+  animation-delay: 0.6s;
+}
+.default-01 .ball:nth-of-type(8)::before {
+  animation-delay: 0.7s;
+}
+.default-01 .ball:nth-of-type(9)::before {
+  animation-delay: 0.8s;
+}
+.default-01 .ball:nth-of-type(10)::before {
+  animation-delay: 0.9s;
+}
+.default-01 .ball:nth-of-type(11)::before {
+  animation-delay: 1s;
+}
+.default-01 .ball:nth-of-type(12)::before {
+  animation-delay: 1.1s;
+}
+@keyframes default1 {
+  33% {
+    transform: scale(1.6) translateZ(0);
+    background-color: #e36d00;
+  }
+  66% {
+    transform: scale(1, 1) translateZ(0);
+    background-color: #e9af7a;
+  }
+  100% {
+    transform: scale(1, 1) translateZ(0);
+    background-color: #fcddc0;
+  }
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.flex {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-bottom: 40px;
+} */

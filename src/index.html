@@ -11,6 +11,27 @@
 </head>
 <body>
 
+  <!-- <div id="overlay">
+    <div class="flex">
+      <div class="loader default default-01">
+        <div class="loader-container">
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   <div class="image_container">
     <img src="page_image.jpg" alt="theme" style="width:100%;">
     
@@ -25,10 +46,20 @@
           <button class="bt" type="submit" style="width: 160px;">Upload Image</button>
         </form>
         <p id="upload_message" style="display: none;"></p>
+
+        <button id="run_model" onclick="run_model()" class="bt" style="width: 160px;display: none;">Run Model</button>
+
+        <p id="run_message" style="display: none;"></p>
+
+        <p id="result" style="display: none;"></p>
+
+        
+
       </div>
 </body>
 <script>
-    const myForm = document.getElementById("myForm");
+var file_name="";
+const myForm = document.getElementById("myForm");
 const inpFile = document.getElementById("inpFile");
 myForm.addEventListener("submit", e => {
   e.preventDefault();
@@ -41,6 +72,7 @@ myForm.addEventListener("submit", e => {
 
   formData.append("inpFile", inpFile.files[0]);
   
+  // overlay_on();
 
   fetch(endpoint, {
     method: "POST",
@@ -51,14 +83,23 @@ myForm.addEventListener("submit", e => {
     .then(json => {
       
       let message = document.getElementById("upload_message");
+      let run_button = document.getElementById("run_model");
       if (json["upload_status"] == "file uploaded") {
+
+        file_name=json["file_id"];
         message.innerHTML = json["upload_status"];
         message.style.display = "flex";
         message.style.backgroundColor = "rgba(51, 255, 51, 0.5)";
+        run_button.style.display="flex";
+
+        // overlay_off();
+
+
       } else {
         message.innerHTML = json["upload_status"];
         message.style.display = "flex";
         message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+        // overlay_off();
       }
 
       
@@ -72,8 +113,83 @@ myForm.addEventListener("submit", e => {
       message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
       message.style.paddingLeft = "20px";
 
+      // overlay_off();
+
       console.error(err);
     });
 });
+
+
+function run_model(){
+
+  // overlay_on();
+  let url="http://127.0.0.1:5000/run/";
+  let data={
+    file_id: file_name
+  };
+
+  fetch(url, {
+    method: "POST",
+    mode: "cors",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "same-origin"
+  })
+  .then(res => res.json())
+    .then(json => {
+      
+      let message = document.getElementById("run_message");
+      let result = document.getElementById("result");
+      if (json["run_status"] == "model prediction successful") {
+
+        
+        message.innerHTML = json["run_status"];
+        message.style.display = "flex";
+        message.style.backgroundColor = "rgba(51, 255, 51, 0.5)";
+
+        result.innerHTML = "result : "+json["result"];
+        result.style.display = "flex";
+
+        // overlay_off();
+
+
+      } else {
+        message.innerHTML = json["run_status"];
+        message.style.display = "flex";
+        message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+
+        // overlay_off();
+      }
+
+      
+
+    })
+    .catch(err => {
+      
+      let message = document.getElementById("run_message");
+      message.innerHTML = "model run unsuccessful !!server is not responding";
+      message.style.display = "flex";
+      message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+      message.style.paddingLeft = "20px";
+
+      // overlay_off();
+
+      console.error(err);
+    });
+
+
+
+
+// function overlay_on() {
+//   document.getElementById("overlay").style.display = "block";
+// }
+
+// function overlay_off() {
+//   document.getElementById("overlay").style.display = "none";
+// }
+    
+}
 </script>
 </html>
