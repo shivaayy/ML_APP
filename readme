@@ -2,4 +2,23 @@
 flask
 flask-restful
 flask-cors
+tensorflow
+efficientnet
+numpy
 
+
+
+Steps to run:
+
+pip install the requirments
+download the efficientnet model from this link:
+    https://www.kaggle.com/siddalore/cassava-efficientnetb7
+
+place it in './server/static' directory
+make sure the name of the model file matches the name in the model_api file
+Start server using 'python server.py'
+Open Front end client by opening the html file in a browser
+Upload image
+Click on run model
+Wait for inference to complete
+See the results!
