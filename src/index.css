@@ -1,28 +1,54 @@
+/* body{
+  background-color: rgb(193, 240, 247);
+  
+} */
 /* Container holding the image and the text */
 .image_container {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
+  position: relative;
+  text-align: center;
+  color: white;
+  box-shadow: 10px 10px 4px #808080;
+}
 
-  /* Centered text */
+/* Centered text */
 .centered {
-    font-size: 350%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  font-size: 350%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /*form style*/
-.form_container{
-    position: absolute;
-    left: 30%;
-    width: 400px;
-    border: 1px solid #73AD21;
-    padding: 50px;
+.form_container {
+  position: absolute;
+  /* left: 30%; */
+  right: 10px;
+  width: 500px;
+  /* border: 1px solid #73AD21; */
+  padding: 50px;
+  background-color: grey;
+  /* box-shadow: 10px 10px 4px #000000; */
+  opacity: 0.9;
+}
 
-  }
+.btn {
+  margin: 0 3px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
 
+.accept {
+  --tw-bg-opacity: 1;
+  background-color: rgba(52, 211, 153, var(--tw-bg-opacity));
+  color: white;
+  border-color: transparent;
+}
+
+.accept:hover {
+  background-color: rgba(5, 150, 105, var(--tw-bg-opacity));
+}
 
 /* loader */
 .loader {
@@ -64,7 +90,7 @@
 }
 
 /* loader default-01 */
-/* .default .loader-container {
+.default .loader-container {
   width: 80px;
   height: 80px;
 }
@@ -118,7 +144,7 @@
   width: 80%;
   padding-bottom: 80%;
   border-radius: 100%;
-  background-color: #fcddc0;
+  background-color: #a5f7bd;
   transform: translateZ(0);
   animation: default1 1.2s infinite linear;
 }
@@ -158,15 +184,15 @@
 @keyframes default1 {
   33% {
     transform: scale(1.6) translateZ(0);
-    background-color: #e36d00;
+    background-color: green;
   }
   66% {
     transform: scale(1, 1) translateZ(0);
-    background-color: #e9af7a;
+    background-color: #3ff776;
   }
   100% {
     transform: scale(1, 1) translateZ(0);
-    background-color: #fcddc0;
+    background-color: #a5f7bd;
   }
 }
 
@@ -192,4 +218,4 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   padding-bottom: 40px;
-} */
+}

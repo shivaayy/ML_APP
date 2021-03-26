@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=
     , initial-scale=1.0">
-    <title>Ml model</title>
-    
-    
-    <link href="index.css" rel="stylesheet" type="text/css" />
+  <title>Ml model</title>
+
+
+  <link href="index.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
 
-  <!-- <div id="overlay">
+  <div id="overlay">
     <div class="flex">
       <div class="loader default default-01">
         <div class="loader-container">
@@ -30,166 +32,251 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <div class="image_container">
-    <img src="page_image.jpg" alt="theme" style="width:100%;">
-    
+    <img src="page_image.jpg" alt="theme" style="width:100%;margin-bottom: 0px;" />
+
     <div class="centered">Welcome To Smart Agriculture</div>
   </div>
-  
-  
-    <div class="form_container" style="margin-left: auto;margin-right: auto;margin-top: 10px;">
-        <p style=" font-size: 150%;color:#00cc00;">Please upload crop Image on server</p>
-        <form class="form" id="myForm">
-          <input type="file" id="inpFile" style="width: auto;" /><br /><br />
-          <button class="bt" type="submit" style="width: 160px;">Upload Image</button>
-        </form>
-        <p id="upload_message" style="display: none;"></p>
 
-        <button id="run_model" onclick="run_model()" class="bt" style="width: 160px;display: none;">Run Model</button>
 
-        <p id="run_message" style="display: none;"></p>
 
-        <p id="result" style="display: none;"></p>
 
-        
+  <div class="form_container" style="margin-left: auto;margin-right: auto;margin-top: 30px;">
+    <p style=" font-size: 180%;color:white;">Please upload crop Image on server</p>
+    <form class="form" id="myForm">
+      <input class="btn accept" type="file" accept="image/*" onchange="preview_image(event)" id="inpFile"
+        style="width: auto;" /><br /><br />
+      <button class="btn accept" type="submit" style="width: 160px;">Upload Image</button>
+    </form>
+    <p id="upload_message" style="padding-left: 10px;padding-top: 5px;padding-bottom: 5px;color: white;display: none;">
+    </p>
 
-      </div>
+    <button id="run_model" onclick="run_model()" class="btn accept" style="width: 160px;display: none;">Run
+      Model</button>
+
+    <p id="run_message" style="padding-left: 10px;padding-top: 5px;padding-bottom: 5px;color: white;display: none;"></p>
+
+    <p id="result" style="padding-left: 10px;padding-top: 5px;padding-bottom: 5px;color: white;display: none;"></p>
+
+
+
+  </div>
+  <div style="margin-top: 30px;height:500px;width:700px;overflow:scroll;box-shadow: 10px 10px 4px #808080;">
+    <img id="output_image" style="max-width: 1000px;max-height: 700;margin-left: auto;margin-right: auto;" />
+  </div>
+
+
+
+  <div style="background-color: #808080;opacity: 0.9; margin-top: 100px;box-shadow: 10px -10px 4px #808080;">
+
+
+    <div style="color: white;">
+      <h1 style="font-size: 300%;text-align: center;padding-top: 20px;background-color: green;height: 60px;">
+        Cassava Leaf Disease</h1>
+    </div>
+
+
+    <table style="margin-left:200px;">
+      <tr>
+        <th><img src="healthy_leaf.png" alt="healthy leaf" style="width: 300px;height: 300px;padding-top: 20px;"></th>
+        <td style="padding-left: 100px;">
+          <h1 style="color: white;">Cassava Healthy Leaf</h1>
+          <h3 style="color: white;"></h3>
+        </td>
+      </tr>
+
+      <tr>
+        <th><img src="CBB.jpg" alt="CBB" style="width: 300px;height: 300px;padding-top: 20px;"></th>
+        <td style="padding-left: 100px;">
+          <h1 style="color: white;">Cassava Bacterial Blight (CBB)</h1>
+          <h3 style="color: white;">"The earliest symptoms visible on cassava leaves are dark-greenish water-soaked
+            areas limited by the leaf veins and which show gummy exudation on the water-soaked areas. The lesions
+            enlarge and eventually coalesce along the veins or edges of the leaf, killing the leaf"</h3>
+        </td>
+      </tr>
+
+      <tr>
+        <th><img src="CBSD.jpg" alt="CBSD" style="width: 300px;height: 300px;padding-top: 20px;"></th>
+        <td style="padding-left: 100px;">
+          <h1 style="color: white;">Cassava Brown Streak Disease (CBSD)</h1>
+          <h3 style="color: white;">"CBSD is characterized by severe chlorosis and necrosis on infected leaves, giving
+            them a yellowish, mottled appearance. Chlorosis may be associated with the veins, spanning from the mid
+            vein, secondary and tertiary veins, or rather in blotches unconnected to veins."</h3>
+        </td>
+      </tr>
+
+      <tr>
+        <th><img src="CGM.jpg" alt="CGM" style="width: 300px;height: 300px;padding-top: 20px;"></th>
+        <td style="padding-left: 100px;">
+          <h1 style="color: white;">Cassava Green Mottle (CGM)</h1>
+          <h3 style="color: white;">"Young leaves are puckered with faint to distinct yellow spots, green patterns
+            (mosaics), and twisted margins. Occasionally, plants become severely stunted."</h3>
+        </td>
+      </tr>
+
+      <tr>
+        <th><img src="CMV.jpeg" alt="CMV" style="width: 300px;height: 300px;padding-top: 20px;"></th>
+        <td style="padding-left: 100px;">
+          <h1 style="color: white;">Cassava Mosaic Disease (CMD)</h1>
+          <h3 style="color: white;">"Cassava Mosaic Disease is characterized by sever mosaic symptoms on leaves, with
+            affected leaved showing mottling and light-green, yellow or white spots. Discoloration, malformation and
+            puckering of the leaf blade occur"</h3>
+        </td>
+      </tr>
+    </table>
+
+
+  </div>
+
+
 </body>
 <script>
-var file_name="";
-const myForm = document.getElementById("myForm");
-const inpFile = document.getElementById("inpFile");
-myForm.addEventListener("submit", e => {
-  e.preventDefault();
-  
-  // console.log(inpFile.innerHTML);
-  // console.log(inpFile.innerText);
-  let endpoint = "http://127.0.0.1:5000/upload/";
-
-  const formData = new FormData();
-
-  formData.append("inpFile", inpFile.files[0]);
-  
-  // overlay_on();
-
-  fetch(endpoint, {
-    method: "POST",
-    mode: "cors",
-    body: formData
-  })
-    .then(res => res.json())
-    .then(json => {
-      
-      let message = document.getElementById("upload_message");
-      let run_button = document.getElementById("run_model");
-      if (json["upload_status"] == "file uploaded") {
-
-        file_name=json["file_id"];
-        message.innerHTML = json["upload_status"];
-        message.style.display = "flex";
-        message.style.backgroundColor = "rgba(51, 255, 51, 0.5)";
-        run_button.style.display="flex";
-
-        // overlay_off();
+  function preview_image(event) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById('output_image');
+      output.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
 
-      } else {
-        message.innerHTML = json["upload_status"];
+  function overlay_on() {
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  function overlay_off() {
+    document.getElementById("overlay").style.display = "none";
+  }
+  var file_name = "";
+  const myForm = document.getElementById("myForm");
+  const inpFile = document.getElementById("inpFile");
+  myForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    // console.log(inpFile.innerHTML);
+    // console.log(inpFile.innerText);
+    let endpoint = "http://127.0.0.1:5000/upload/";
+
+    const formData = new FormData();
+
+    formData.append("inpFile", inpFile.files[0]);
+
+    overlay_on();
+
+    fetch(endpoint, {
+      method: "POST",
+      mode: "cors",
+      body: formData
+    })
+      .then(res => res.json())
+      .then(json => {
+
+        let message = document.getElementById("upload_message");
+        let run_button = document.getElementById("run_model");
+        if (json["upload_status"] == "file uploaded") {
+
+          file_name = json["file_id"];
+          message.innerHTML = json["upload_status"];
+          message.style.display = "flex";
+          message.style.backgroundColor = "rgba(51, 255, 51, 0.5)";
+          run_button.style.display = "flex";
+
+          overlay_off();
+
+
+        } else {
+          message.innerHTML = json["upload_status"];
+          message.style.display = "flex";
+          message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+          overlay_off();
+        }
+
+
+
+      })
+      .catch(err => {
+
+        let message = document.getElementById("upload_message");
+        message.innerHTML = "file upload unsuccessful !!server is not responding";
         message.style.display = "flex";
         message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
-        // overlay_off();
-      }
+        message.style.paddingLeft = "20px";
 
-      
+        overlay_off();
 
+        console.error(err);
+      });
+  });
+
+
+  function run_model() {
+
+    overlay_on();
+    let url = "http://127.0.0.1:5000/run/";
+    let data = {
+      file_id: file_name
+    };
+
+    fetch(url, {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
     })
-    .catch(err => {
-      
-      let message = document.getElementById("upload_message");
-      message.innerHTML = "file upload unsuccessful !!server is not responding";
-      message.style.display = "flex";
-      message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
-      message.style.paddingLeft = "20px";
+      .then(res => res.json())
+      .then(json => {
 
-      // overlay_off();
-
-      console.error(err);
-    });
-});
+        let message = document.getElementById("run_message");
+        let result = document.getElementById("result");
+        if (json["run_status"] == "model prediction successful") {
 
 
-function run_model(){
+          message.innerHTML = json["run_status"];
+          message.style.display = "flex";
+          message.style.backgroundColor = "rgba(51, 255, 51, 0.5)";
 
-  // overlay_on();
-  let url="http://127.0.0.1:5000/run/";
-  let data={
-    file_id: file_name
-  };
+          result.innerHTML = "result : " + json["result"];
+          result.style.display = "flex";
 
-  fetch(url, {
-    method: "POST",
-    mode: "cors",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    },
-    credentials: "same-origin"
-  })
-  .then(res => res.json())
-    .then(json => {
-      
-      let message = document.getElementById("run_message");
-      let result = document.getElementById("result");
-      if (json["run_status"] == "model prediction successful") {
-
-        
-        message.innerHTML = json["run_status"];
-        message.style.display = "flex";
-        message.style.backgroundColor = "rgba(51, 255, 51, 0.5)";
-
-        result.innerHTML = "result : "+json["result"];
-        result.style.display = "flex";
-
-        // overlay_off();
+          overlay_off();
 
 
-      } else {
-        message.innerHTML = json["run_status"];
+        } else {
+          message.innerHTML = json["run_status"];
+          message.style.display = "flex";
+          message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+
+          overlay_off();
+        }
+
+
+
+      })
+      .catch(err => {
+
+        let message = document.getElementById("run_message");
+        message.innerHTML = "model run unsuccessful !!server is not responding";
         message.style.display = "flex";
         message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
+        message.style.paddingLeft = "20px";
 
-        // overlay_off();
-      }
+        overlay_off();
 
-      
-
-    })
-    .catch(err => {
-      
-      let message = document.getElementById("run_message");
-      message.innerHTML = "model run unsuccessful !!server is not responding";
-      message.style.display = "flex";
-      message.style.backgroundColor = "rgba(255, 77, 77, 0.5)";
-      message.style.paddingLeft = "20px";
-
-      // overlay_off();
-
-      console.error(err);
-    });
+        console.error(err);
+      });
 
 
 
 
-// function overlay_on() {
-//   document.getElementById("overlay").style.display = "block";
-// }
 
-// function overlay_off() {
-//   document.getElementById("overlay").style.display = "none";
-// }
-    
-}
+
+  }
 </script>
+
 </html>
