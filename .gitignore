@@ -1,2 +1,4 @@
 cassava.hdf5
 efficientnet.h5
+.vscode
+__pycache__
