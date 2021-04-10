@@ -10,15 +10,22 @@ numpy
 
 Steps to run:
 
-pip install the requirments
-download the efficientnet model from this link:
+1. `pip install -r requirements.txt`
+
+2. download the efficientnet model from this link:
     https://www.kaggle.com/siddalore/cassava-efficientnetb7
 
 place it in './server/static' directory
-make sure the name of the model file matches the name in the model_api file
-Start server using 'python server.py'
-Open Front end client by opening the html file in a browser
-Upload image
-Click on run model
-Wait for inference to complete
+
+_make sure the name of the model file matches the name in the model_api file_
+3. Start server using 'python server.py'
+
+4. Open Front end client by opening the html file in a browser
+
+5. Upload image
+
+6. Click on run model
+
+7. Wait for inference to complete
+
 See the results!

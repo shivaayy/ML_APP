@@ -1,0 +1,6 @@
+flask
+flask-restful
+flask-cors
+tensorflow
+efficientnet
+numpy
