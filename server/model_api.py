@@ -10,7 +10,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 from efficientnet.tfkeras import EfficientNetB4
 print(tf.version.VERSION)
-
+import time
 
 class UploadImage(Resource):
     def __init__(self):
@@ -74,6 +74,7 @@ class RunModel(Resource):
         # model = tf.keras.models.load_model("cassava.hdf5")
         print("model loaded\n")
         error_code = 200
+        tic = time.perf_counter()
         try:
             test_datagen = ImageDataGenerator(rescale=1/255)
             # print("Hello")
@@ -103,6 +104,12 @@ class RunModel(Resource):
         except:
             run_status = "error in running model file on server!!"
             error_code = 404
+        
+        toc = time.perf_counter()
+        run_status = run_status + f": in {toc - tic:0.4f} seconds"
+        print(run_status,"---", result)
+        print(f"\n----------------------------------Time to predict : {toc - tic:0.4f} seconds---------------------------------------\n")
+        
         shutil.rmtree(dir_loc+"/static/img")
         res = make_response(
             jsonify({
