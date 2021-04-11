@@ -361,7 +361,7 @@
           .then((res) => res.json())
           .then((json) => {
             let result = document.getElementById("result");
-            if (json["run_status"] == "model prediction successful") {
+            if (1) {
               run_message_success_alert.innerHTML = json["run_status"];
               run_message_success_alert.style.display = "flex";
 
