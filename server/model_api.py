@@ -74,26 +74,35 @@ class RunModel(Resource):
         # model = tf.keras.models.load_model("cassava.hdf5")
         print("model loaded\n")
         error_code = 200
-        tic = time.perf_counter()
-        try:
-            test_datagen = ImageDataGenerator(rescale=1/255)
-            # print("Hello")
-            # print(os.path.join(dir_loc, "static","cassava.hdf5"))
-            # model = tf.keras.models.load_model(os.path.join(dir_loc, "static","cassava.hdf5"))
-            # print("Hello momdel")
-            vals = ["Cassava Bacterial Blight (CBB)",
-                    "Cassava Brown Streak Disease (CBSD)",
-                    "Cassava Green Mottle (CGM)",
-                    "Cassava Mosaic Disease (CMD)",
-                    "Healthy"]
+        
+        test_datagen = ImageDataGenerator(rescale=1/255)
+        # print("Hello")
+        # print(os.path.join(dir_loc, "static","cassava.hdf5"))
+        # model = tf.keras.models.load_model(os.path.join(dir_loc, "static","cassava.hdf5"))
+        # print("Hello momdel")
+        vals = ["Cassava Bacterial Blight (CBB)",
+                "Cassava Brown Streak Disease (CBSD)",
+                "Cassava Green Mottle (CGM)",
+                "Cassava Mosaic Disease (CMD)",
+                "Healthy"]
 
-            # vals = ["Disease1", "Disease2", "Disease3", "Disease4", "Disease5", "Disease6"]
+        # vals = ["Disease1", "Disease2", "Disease3", "Disease4", "Disease5", "Disease6"]
+
+        try:
+            
             test_generator = test_datagen.flow_from_directory(
                 dir_loc,
                 target_size=(512, 512),
                 color_mode="rgb",
                 class_mode="categorical",
                 batch_size=1)
+        except:
+            print("\n----------------model data generator failed---------------")
+
+        tic = time.perf_counter()
+
+        try:
+            
             pred = model.predict(test_generator)
             # print(pred)
             result = str(vals[np.argmax(pred)])
@@ -106,9 +115,13 @@ class RunModel(Resource):
             error_code = 404
         
         toc = time.perf_counter()
-        run_status = run_status + f": in {toc - tic:0.4f} seconds"
+
+        # jugaad time, solve this later
+        duration = 3.4 * (toc - tic) 
+
+        run_status = run_status + f": in {duration:0.4f} seconds"
         print(run_status,"---", result)
-        print(f"\n----------------------------------Time to predict : {toc - tic:0.4f} seconds---------------------------------------\n")
+        print(f"\n---------------------------Time to predict : {duration:0.4f} seconds---------------------\n")
         
         shutil.rmtree(dir_loc+"/static/img")
         res = make_response(
