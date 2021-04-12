@@ -104,10 +104,12 @@ class RunModel(Resource):
         try:
             
             pred = model.predict(test_generator)
-            # print(pred)
+            print(f"\n---------prediction accuracy ---{pred}--------------------")
+            max_probability = pred[0][np.argmax(pred)]
             result = str(vals[np.argmax(pred)])
 
-            run_status = "model prediction successful"
+            run_status = f"model prediction successful with accuracy {max_probability*100:0.2f}%"
+            # run_status = "model prediction successful with accuracy"
             # result=random.randrange(20,8000,6)
 
         except:
